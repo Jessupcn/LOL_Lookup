@@ -3,13 +3,13 @@ const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const compression = require('compression');
-const db = require('./db');
+// const db = require('./db');
 const PORT = process.env.PORT || 8080;
 const app = express();
 module.exports = app;
 
 // sync database
-db.sync().then(() => console.log('Database is synced'));
+// db.sync().then(() => console.log('Database is synced'));
 
 // logging middleware
 app.use(morgan('dev'));
