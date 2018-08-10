@@ -1,0 +1,33 @@
+{
+  "name": "League_Lookup_App",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.3",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-client": "webpack-cli --watch --mode development",
+    "build-client-watch": "webpack -w",
+    "start": "node Server",
+    "start-dev": "NODE_ENV='development' npm run build-client-watch & npm run start-server",
+    "start-server": "nodemon Server -e html,js,scss --ignore Client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jessupcn/LOL_Lookup.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jessupcn/LOL_Lookup/issues"
+  },
+  "homepage": "https://github.com/Jessupcn/LOL_Lookup#readme"
+}
