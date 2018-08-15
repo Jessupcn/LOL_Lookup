@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Calendar } from './components';
+// import { Header } from './components';
 
 /*
 * Entry point into Components
@@ -9,7 +9,8 @@ import { Calendar } from './components';
 const App = () => {
   return (
     <div>
-      <Calendar />
+      {/* <Header />  */}
+      <app />
     </div>
   );
 };
