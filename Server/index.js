@@ -22,10 +22,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(compression());
 
 // api routes
-app.use('/api', require('./api'));
+// app.use('/api', require('./api'));
 
 // static file-serving middleware
-app.use(express.static(path.join(__dirname, '..', 'CalendarFrontEnd/public')));
+app.use(express.static(path.join(__dirname, '..', 'Client/public')));
 
 // any remaining requests with an extension (.js, .css, etc.) send 404
 app.use((req, res, next) => {

@@ -10,7 +10,7 @@ const App = () => {
   return (
     <div>
       {/* <Header />  */}
-      <app />
+      <h1>Hi There</h1>
     </div>
   );
 };
