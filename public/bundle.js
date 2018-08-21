@@ -140,6 +140,8 @@ var _reactRedux = __webpack_require__(/*! react-redux */ "./node_modules/react-r
 
 var _SearchSummoner = _interopRequireDefault(__webpack_require__(/*! ./SearchSummoner */ "./Client/components/SearchSummoner.js"));
 
+var _redux_store = __webpack_require__(/*! ../redux_store */ "./Client/redux_store/index.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
@@ -177,6 +179,11 @@ function (_Component) {
   }
 
   _createClass(Home, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.loadSummoner();
+    }
+  }, {
     key: "render",
     value: function render() {
       return _react.default.createElement("div", null, _react.default.createElement(_SearchSummoner.default, null));
@@ -186,7 +193,17 @@ function (_Component) {
   return Home;
 }(_react.Component);
 
-var _default = Home;
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    loadSummoner: function loadSummoner() {
+      var action = (0, _redux_store.fetchSummoner)('WolverineUM');
+      return dispatch(action);
+    }
+  };
+};
+
+var _default = (0, _reactRedux.connect)(null, mapDispatchToProps)(Home);
+
 exports.default = _default;
 
 /***/ }),
@@ -501,7 +518,7 @@ exports.default = _default;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(process) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -543,7 +560,7 @@ exports.getSummoner = getSummoner;
 
 var fetchSummoner = function fetchSummoner(summonerName) {
   return function (dispatch) {
-    return _axios.default.get("".concat(_domain.default, "/summoner/v3/summoners/by-name/").concat(summonerName, "?api_key=RGAPI-a92a32c7-2b29-481c-bfcf-8f3a0365908d")).then(function (res) {
+    return _axios.default.get("".concat(_domain.default, "/summoner/v3/summoners/by-name/").concat(summonerName, "?api_key=").concat(process.env.LOL_API_KEY)).then(function (res) {
       return res.data;
     }).then(function (summoner) {
       console.log('SUMMONER: summoner');
@@ -572,6 +589,7 @@ function _default() {
       return state;
   }
 }
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 

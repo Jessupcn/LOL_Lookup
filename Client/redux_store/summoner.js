@@ -26,7 +26,9 @@ export const getSummoner = summoner => ({
 export const fetchSummoner = summonerName => dispatch =>
   axios
     .get(
-      `${domain}/summoner/v3/summoners/by-name/${summonerName}?api_key=RGAPI-a92a32c7-2b29-481c-bfcf-8f3a0365908d`
+      `${domain}/summoner/v3/summoners/by-name/${summonerName}?api_key=${
+        process.env.LOL_API_KEY
+      }`
     )
     .then(res => res.data)
     .then(summoner => {
