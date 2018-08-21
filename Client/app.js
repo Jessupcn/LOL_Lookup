@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import { Header } from './components';
+import Routes from './routes';
 
 /*
 * Entry point into Components
@@ -11,6 +11,7 @@ const App = () => {
     <div>
       {/* <Header />  */}
       <h1>Hi There</h1>
+      <Routes />
     </div>
   );
 };
