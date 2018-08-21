@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SearchSummoner } from './SearchSummoner';
+import SearchSummoner from './SearchSummoner';
 
 /*
 HOME COMPONENT
 */
-class Home extends React.Component {
+class Home extends Component {
   render() {
     return (
       <div>
@@ -14,3 +14,5 @@ class Home extends React.Component {
     );
   }
 }
+
+export default Home;
