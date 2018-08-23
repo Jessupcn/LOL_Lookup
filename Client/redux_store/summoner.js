@@ -1,5 +1,4 @@
 import axios from 'axios';
-import domain from '../domain';
 
 /**
  * ACTION TYPES
@@ -25,14 +24,10 @@ export const getSummoner = summoner => ({
 
 export const fetchSummoner = summonerName => dispatch =>
   axios
-    .get(
-      `${domain}/summoner/v3/summoners/by-name/${summonerName}?api_key=${
-        process.env.LOL_API_KEY
-      }`
-    )
+    .get(`/api/summoners/${summonerName}`)
     .then(res => res.data)
     .then(summoner => {
-      console.log('SUMMONER: summoner');
+      console.log('SUMMONER: ', summoner);
       dispatch(getSummoner(summoner));
     })
     .catch(err => console.log(err));

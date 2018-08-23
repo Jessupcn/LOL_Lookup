@@ -8,6 +8,8 @@ const PORT = process.env.PORT || 8080;
 const app = express();
 module.exports = app;
 
+if (process.env.NODE_ENV !== 'production') require('../secrets');
+
 // sync database
 // db.sync().then(() => console.log('Database is synced'));
 
@@ -22,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(compression());
 
 // api routes
-// app.use('/api', require('./api'));
+app.use('/api', require('./api'));
 
 // static file-serving middleware
 app.use(express.static(path.join(__dirname, '..', 'public')));
