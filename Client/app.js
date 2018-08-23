@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Routes from './routes';
+import { NavBar } from './Components';
 
 /*
 * Entry point into Components
@@ -9,8 +10,7 @@ import Routes from './routes';
 const App = () => {
   return (
     <div>
-      {/* <Header />  */}
-      <h1>Hi There</h1>
+      <NavBar />
       <Routes />
     </div>
   );
