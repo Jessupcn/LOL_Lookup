@@ -6,9 +6,7 @@ import SearchSummoner from './SearchSummoner';
 HOME COMPONENT
 */
 class Home extends Component {
-  componentDidMount() {
-    // this.props.loadSummoner();
-  }
+  componentDidMount() {}
   render() {
     return (
       <div>
