@@ -12,6 +12,7 @@ class SearchSummoner extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   componentDidMount() {}
 
   handleChange(event) {

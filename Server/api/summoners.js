@@ -16,3 +16,15 @@ router.get('/:summonerName', (req, res, next) => {
     .then(data => res.status(200).send(data))
     .catch(next);
 });
+
+// async function fetchMatches(data) {
+//   const matches = await axios
+//     .get(
+//       `${domain}/match/v3/matchlists/by-account/${data.accountId}?api_key=${
+//         process.env.LOL_API_KEY
+//       }`
+//     )
+//     .then(matches => matches.data)
+//     .catch();
+//   return matches;
+// }
