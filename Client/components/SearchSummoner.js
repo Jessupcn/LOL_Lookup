@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Icon, Input, Form } from 'semantic-ui-react';
 import { fetchSummoner } from '../redux_store';
+import history from '../history';
 
 class SearchSummoner extends Component {
   constructor(props) {
@@ -13,8 +14,6 @@ class SearchSummoner extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {}
-
   handleChange(event) {
     this.setState({
       input: event.target.value
@@ -22,7 +21,11 @@ class SearchSummoner extends Component {
     console.log('INPUT:', this.state.input);
   }
   handleSubmit() {
-    this.props.loadSummoner(this.state.input);
+    // this.props
+    //   .loadSummoner(this.state.input)
+    //   .then(history.push(`/summoner/${this.state.input}`))
+    //   .catch();
+    history.push(`/summoner/${this.state.input}`);
     this.setState({
       input: ''
     });

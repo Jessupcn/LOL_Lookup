@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
-import { Home } from './components';
+import { Home, Summoner } from './components';
 
 /**
  * COMPONENT
@@ -13,6 +13,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        <Route path="/summoner/:summonerName" component={Summoner} />
         <Route exact path="/" component={Home} />
         {/* Displays our Home component as a fallback */}
         <Route component={Home} />
@@ -25,6 +26,7 @@ class Routes extends Component {
  * CONTAINER
  */
 const mapState = state => {
+  console.log('REDUX STORE STATE: ', state);
   return {};
 };
 
