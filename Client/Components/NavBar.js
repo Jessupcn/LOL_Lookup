@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Menu, Icon } from 'semantic-ui-react';
 import { SearchSummoner } from './index';
 

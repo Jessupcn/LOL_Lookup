@@ -13,7 +13,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route exact path="/summoner" component={Summoner} />
+        <Route path="/summoner/:summonerName" component={Summoner} />
         <Route exact path="/" component={Home} />
         {/* Displays our Home component as a fallback */}
         <Route component={Home} />
