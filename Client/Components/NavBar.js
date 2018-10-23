@@ -5,7 +5,7 @@ import { SearchSummoner } from './index';
 const NavBar = () => {
   return (
     <Menu inverted size="huge">
-      <Menu.Item>
+      <Menu.Item as="a" href="/">
         <Icon name="home" size="big" />
       </Menu.Item>
       <Menu.Item position="right">

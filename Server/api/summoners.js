@@ -5,7 +5,6 @@ const key = process.env.LOL_API_KEY;
 module.exports = router;
 
 router.get('/:summonerName', (req, res, next) => {
-  console.log('API KEY: ', key);
   axios
     .get(
       `${domain}/summoner/v3/summoners/by-name/${
@@ -13,6 +12,18 @@ router.get('/:summonerName', (req, res, next) => {
       }?api_key=${process.env.LOL_API_KEY}`
     )
     .then(summoner => summoner.data)
+    .then(data => res.status(200).send(data))
+    .catch(next);
+});
+
+router.get('/profileIcon/:profileIconId', (req, res, next) => {
+  axios
+    .get(
+      `http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/${
+        req.params.profileIconId
+      }.png`
+    )
+    .then(summonerProfId => summonerProfId.data)
     .then(data => res.status(200).send(data))
     .catch(next);
 });
@@ -28,3 +39,5 @@ router.get('/:summonerName', (req, res, next) => {
 //     .catch();
 //   return matches;
 // }
+
+// `https://na1.api.riotgames.com/lol/match/v3/matchlists/by-account/{accountId}?api_key=${process.env.LOL_API_KEY}`

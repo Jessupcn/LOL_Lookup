@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchSummoner } from '../redux_store';
+import { fetchSummoner, fetchSummonerProfIcon } from '../redux_store';
 
 /*
 HOME COMPONENT
@@ -15,10 +15,17 @@ class Summoner extends Component {
   }
 
   componentDidMount() {
-    this.props.loadSummoner();
+    this.props.loadSummonerData();
   }
 
   componentWillReceiveProps(props) {
+    console.log(`componentWillReceiveProps: `, props);
+    if (
+      props.match.params.summonerName.toLowerCase() !==
+      props.summoner.name.toLowerCase()
+    ) {
+      this.props.loadSummonerData();
+    }
     this.setState({ summoner: props.summoner });
   }
 
@@ -30,6 +37,11 @@ class Summoner extends Component {
         <h1>{`Greetings, ${
           this.state.summoner ? this.state.summoner.name : 'Summoner'
         }`}</h1>
+        <img
+          src={`http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/${
+            this.props.summoner.profileIconId
+          }.png`}
+        />
       </div>
     );
   }
@@ -42,12 +54,26 @@ const mapState = state => {
   return { summoner: state.summoner };
 };
 
+// const mapDispatch = dispatch => {
+//   return {
+//     loadInitialData() {
+//       dispatch(me());
+//       dispatch(fetchProducts());
+//       dispatch(fetchCategories());
+//       dispatch(fetchSingleCart());
+//       dispatch(fetchUserOrders());
+//     }
+//   };
+// };
+
 const mapDispatch = (dispatch, ownProps) => ({
-  loadSummoner: () => {
+  loadSummonerData() {
     const summonerName = ownProps.match.params.summonerName;
-    console.log('NAME :', summonerName);
-    const action = fetchSummoner(summonerName);
-    return dispatch(action);
+    dispatch(fetchSummoner(summonerName));
+    // .then(() => {
+    //   dispatch(fetchSummonerProfIcon(this.props.profileIconId));
+    // })
+    // .catch();
   }
 });
 
