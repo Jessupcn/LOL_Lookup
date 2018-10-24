@@ -19,7 +19,7 @@ router.get('/:summonerName', (req, res, next) => {
 router.get('/profileIcon/:profileIconId', (req, res, next) => {
   axios
     .get(
-      `http://ddragon.leagueoflegends.com/cdn/6.24.1/img/profileicon/${
+      `http://ddragon.leagueoflegends.com/cdn/8.20.1/img/profileicon/${
         req.params.profileIconId
       }.png`
     )

@@ -1,0 +1,13 @@
+.banner {
+  min-width: 400px;
+  min-height: 50px;
+  max-width: 600px;
+  max-height: 70px;
+  display: flex;
+  flex-direction: row;
+}
+
+.bannerProfIcon {
+  height: 80%;
+  width: auto;
+}

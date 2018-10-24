@@ -28,7 +28,7 @@ export const fetchSummonerProfIcon = summonerProfIconId => dispatch =>
     .then(res => res.data)
     .then(summoner => {
       console.log('SUMMONER: ', summoner);
-      dispatch(getSummoner(summoner));
+      dispatch(getSummonerProfIcon(summoner));
     })
     .catch(err => console.log(err));
 
