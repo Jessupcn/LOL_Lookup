@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Container } from 'semantic-ui-react';
+import LeagueBadge from './LeagueBadge';
 
 const Banner = props => {
   console.log('BANNER PROPS: ', props);
   let summoner = props.summoner;
+  let summonerLeagues = props.summonerLeagues;
   return (
     <Container>
       <div className="banner shadow">
@@ -26,6 +28,7 @@ const Banner = props => {
               : 'loading . . .'}
           </p>
         </div>
+        <LeagueBadge summonerLeagues={summonerLeagues} />
       </div>
     </Container>
   );
