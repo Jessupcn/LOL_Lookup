@@ -16,14 +16,15 @@ router.get('/:summonerName', (req, res, next) => {
     .catch(next);
 });
 
-router.get('/profileIcon/:profileIconId', (req, res, next) => {
+// /lol/league/v3/positions/by-summoner/{summonerId}
+router.get('/:summonerId/leagues', (req, res, next) => {
   axios
     .get(
-      `http://ddragon.leagueoflegends.com/cdn/8.20.1/img/profileicon/${
-        req.params.profileIconId
-      }.png`
+      `${domain}/league/v3/positions/by-summoner/${
+        req.params.summonerId
+      }?api_key=${process.env.LOL_API_KEY}`
     )
-    .then(summonerProfId => summonerProfId.data)
+    .then(summonerLeagueInfo => summonerLeagueInfo.data)
     .then(data => res.status(200).send(data))
     .catch(next);
 });

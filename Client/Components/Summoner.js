@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchSummoner, fetchSummonerProfIcon } from '../redux_store';
+import { fetchSummoner, fetchSummonerLeagues } from '../redux_store';
 import { Banner } from './SummonerComps';
 import { Loader } from 'semantic-ui-react';
 
@@ -27,7 +27,14 @@ class Summoner extends Component {
     ) {
       this.props.loadSummonerData();
     }
-    this.setState({ summoner: props.summoner, isLoading: false });
+    if (props.summoner.id) {
+      props.loadSummonerLeagues(props.summoner.id);
+    }
+    this.setState({
+      summoner: props.summoner,
+      summonerLeagues: props.summonerLeagues,
+      isLoading: false
+    });
   }
 
   render() {
@@ -73,10 +80,9 @@ const mapDispatch = (dispatch, ownProps) => ({
   loadSummonerData() {
     const summonerName = ownProps.match.params.summonerName;
     dispatch(fetchSummoner(summonerName));
-    // .then(() => {
-    //   dispatch(fetchSummonerProfIcon(this.props.profileIconId));
-    // })
-    // .catch();
+  },
+  loadSummonerLeagues(accountId) {
+    dispatch(fetchSummonerLeagues(accountId));
   }
 });
 
