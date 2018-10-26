@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchSummoner, fetchSummonerProfIcon } from '../redux_store';
 import { Banner } from './SummonerComps';
+import { Loader } from 'semantic-ui-react';
 
 /*
 HOME COMPONENT
@@ -34,10 +35,16 @@ class Summoner extends Component {
     console.log(`PROPS: `, this.props);
     return (
       <div>
-        <h1>{`Greetings, ${
-          this.state.summoner ? this.state.summoner.name : 'Summoner'
-        }`}</h1>
-        <Banner summoner={this.state.summoner} />
+        {this.state.isLoading ? (
+          <Loader size="massive">Loading</Loader>
+        ) : (
+          <div>
+            <h1>{`Greetings, ${
+              this.state.summoner ? this.state.summoner.name : 'Summoner'
+            }`}</h1>
+            <Banner summoner={this.state.summoner} />
+          </div>
+        )}
       </div>
     );
   }

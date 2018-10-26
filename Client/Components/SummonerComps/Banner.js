@@ -4,18 +4,28 @@ import { Container } from 'semantic-ui-react';
 
 const Banner = props => {
   console.log('BANNER PROPS: ', props);
+  let summoner = props.summoner;
   return (
     <Container>
-      <div className="banner">
+      <div className="banner shadow">
         {props && props.summoner.name ? (
-          <img
-            className="bannerProfIcon"
-            src={`http://ddragon.leagueoflegends.com/cdn/8.20.1/img/profileicon/${
-              props.summoner.profileIconId
-            }.png`}
-          />
+          <div className="bannerProfIconContainer">
+            <img
+              className="bannerProfIcon"
+              src={`http://ddragon.leagueoflegends.com/cdn/8.20.1/img/profileicon/${
+                props.summoner.profileIconId
+              }.png`}
+            />
+          </div>
         ) : null}
-        <h1>{props.summoner.name ? props.summoner.name : '1 moment please'}</h1>
+        <div className="bannerTitleContainer">
+          <h1>{summoner.name ? summoner.name : '1 moment please...'}</h1>
+          <p>
+            {summoner.summonerLevel
+              ? `Level: ${summoner.summonerLevel}`
+              : 'loading . . .'}
+          </p>
+        </div>
       </div>
     </Container>
   );
