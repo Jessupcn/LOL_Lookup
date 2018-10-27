@@ -12,7 +12,8 @@ class Summoner extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      summoner: this.props.summoner
+      summoner: {},
+      summonerLeagues: []
     };
   }
 
@@ -49,7 +50,10 @@ class Summoner extends Component {
             <h1>{`Greetings, ${
               this.state.summoner ? this.state.summoner.name : 'Summoner'
             }`}</h1>
-            <Banner summoner={this.state.summoner} />
+            <Banner
+              summoner={this.state.summoner}
+              summonerLeagues={this.state.summonerLeagues}
+            />
           </div>
         )}
       </div>
