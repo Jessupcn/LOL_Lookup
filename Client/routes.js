@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
-import { Home, Summoner } from './components';
+import { Home, SummonerView } from './components';
 
 /**
  * COMPONENT
@@ -13,7 +13,7 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
-        <Route path="/summoner/:summonerName" component={Summoner} />
+        <Route path="/summoner/:summonerName" component={SummonerView} />
         <Route exact path="/" component={Home} />
         {/* Displays our Home component as a fallback */}
         <Route component={Home} />
