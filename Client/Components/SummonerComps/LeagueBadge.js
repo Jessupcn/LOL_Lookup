@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 
 const LeagueBadge = props => {
   return (
-    <div>
-      <p>Hi There</p>
+    <div className="bannerLeagueContainer">
+      <div className="bannerLeagueBadge gold">Hi</div>
+      <div className="bannerLeagueBadge silver">Hi</div>
+      <div className="bannerLeagueBadge master">Hi</div>
     </div>
   );
 };
