@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchSummoner, fetchSummonerLeagues } from '../redux_store';
+import {
+  fetchSummoner,
+  fetchSummonerLeagues,
+  fetchSummonerMatches
+} from '../redux_store';
 import { Banner } from './SummonerComps';
 import { Loader } from 'semantic-ui-react';
 
@@ -13,12 +17,13 @@ class Summoner extends Component {
     this.state = {
       isLoading: true,
       summoner: {},
-      summonerLeagues: []
+      summonerLeagues: [],
+      summonerMatches: []
     };
   }
 
   componentDidMount() {
-    this.props.loadSummonerData();
+    this.props.loadSummoner();
   }
 
   componentWillReceiveProps(props) {
@@ -26,14 +31,15 @@ class Summoner extends Component {
       props.match.params.summonerName.toLowerCase() !==
       props.summoner.name.toLowerCase()
     ) {
-      this.props.loadSummonerData();
+      this.props.loadSummoner();
     }
     if (props.summoner.id) {
-      props.loadSummonerLeagues(props.summoner.id);
+      props.loadSummonerData(props.summoner);
     }
     this.setState({
       summoner: props.summoner,
       summonerLeagues: props.summonerLeagues,
+      summonerMatches: props.summonerMatches,
       isLoading: false
     });
   }
@@ -81,12 +87,13 @@ const mapState = state => {
 // };
 
 const mapDispatch = (dispatch, ownProps) => ({
-  loadSummonerData() {
+  loadSummoner() {
     const summonerName = ownProps.match.params.summonerName;
     dispatch(fetchSummoner(summonerName));
   },
-  loadSummonerLeagues(accountId) {
-    dispatch(fetchSummonerLeagues(accountId));
+  loadSummonerData(summoner) {
+    dispatch(fetchSummonerLeagues(summoner.id));
+    dispatch(fetchSummonerMatches(summoner.accountId));
   }
 });
 

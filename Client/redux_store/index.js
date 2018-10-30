@@ -5,10 +5,16 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import champions from './champions';
 import summoner from './summoner';
 import summonerLeagues from './summonerLeagues';
+import summonerMatches from './summonerMatches';
 
 // create a "combine reducers" in case of future additions
 
-const reducer = combineReducers({ champions, summoner, summonerLeagues });
+const reducer = combineReducers({
+  champions,
+  summoner,
+  summonerLeagues,
+  summonerMatches
+});
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );
@@ -20,3 +26,4 @@ export default store;
 export * from './champions';
 export * from './summoner';
 export * from './summonerLeagues';
+export * from './summonerMatches';
