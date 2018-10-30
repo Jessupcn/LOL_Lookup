@@ -34,7 +34,7 @@ router.get('/:summonerId/leagues', (req, res, next) => {
 router.get('/:accountId/matches', (req, res, next) => {
   axios
     .get(
-      `${domain}/match/v3/matchlists/by-account/{
+      `${domain}/match/v3/matchlists/by-account/${
         req.params.accountId
       }?api_key=${key}`
     )

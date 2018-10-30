@@ -8,7 +8,7 @@ const GET_SUMMONER_MATCHES = 'GET_SUMMONER_MATCHES';
 /**
  * INITIAL STATE
  */
-const defaultSummonerMatches = {};
+const defaultSummonerMatches = [];
 
 /**
  * ACTION CREATORS
@@ -25,9 +25,10 @@ export const getSummonerMatches = summonerMatches => ({
 export const fetchSummonerMatches = accountId => dispatch =>
   axios
     .get(`/api/summoners/${accountId}/matches`)
-    .then(res => res.data)
+    .then(res => {
+      return res.data.matches;
+    })
     .then(summonerMatches => {
-      console.log('SUMMONER MATCHES: ', summonerMatches);
       dispatch(getSummonerMatches(summonerMatches));
     })
     .catch(err => console.log(err));
