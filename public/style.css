@@ -39,39 +39,46 @@
 /**
 *  League Badges
 */
+.bannerLeagueContainer {
+  width: 30%;
+  align-self: stretch;
+  /* min-height: 60px;
+  max-height: 90px; */
+  display: flex;
+  flex-direction: row;
+}
+
 .bannerLeagueBadge {
-  width: 10%;
-  height: 100%;
-  border: 2px solid;
+  width: 100%;
   color: white;
 }
 
 .bronze {
   background-color: #cd7f32;
-  border: #8b4513;
+  border: 2px solid #8b4513;
 }
 
 .silver {
   background-color: grey;
-  border: darkgrey;
+  border: 2px solid darkgrey;
 }
 
 .gold {
   background-color: gold;
-  border: darkgoldenrod;
+  border: 2px solid darkgoldenrod;
 }
 
 .platinum {
   background-color: lightgrey;
-  border: grey;
+  border: 2px solid grey;
 }
 
 .diamond {
   background-color: rgb(10, 149, 236);
-  border: lightgrey;
+  border: 2px solid lightgrey;
 }
 
 .master {
   background-color: turquoise;
-  border: gold;
+  border: 2px solid gold;
 }
