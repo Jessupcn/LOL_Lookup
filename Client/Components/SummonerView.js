@@ -5,11 +5,11 @@ import {
   fetchSummonerLeagues,
   fetchSummonerMatches
 } from '../redux_store';
-import { Banner } from './SummonerComps';
+import { Banner, Match } from './SummonerComps';
 import { Loader } from 'semantic-ui-react';
 
 /*
-HOME COMPONENT
+SUMMONER VIEW COMPONENT
 */
 class Summoner extends Component {
   constructor(props) {
@@ -18,7 +18,8 @@ class Summoner extends Component {
       isLoading: true,
       summoner: {},
       summonerLeagues: [],
-      summonerMatches: []
+      summonerMatches: [],
+      matchesShown: 0
     };
   }
 
@@ -27,26 +28,56 @@ class Summoner extends Component {
   }
 
   componentWillReceiveProps(props) {
+    let matchesShown = 0;
+
+    console.log('RECEIVINGGGG: ', props);
+    // load the new summoner if the component does not unmount,
+    // but a new summoner is selected
     if (
       props.match.params.summonerName.toLowerCase() !==
       props.summoner.name.toLowerCase()
     ) {
       this.props.loadSummoner();
     }
+
+    // if there is a current summoner, load the data for that summoner
     if (props.summoner.id) {
       props.loadSummonerData(props.summoner);
     }
+
+    // Working with how many recent matches to show
+    console.log(
+      'SUMMONER MATCHES IN RECEIVE: ',
+      props.summonerMatches,
+      props.matchesShown
+    );
+    if (props.summonerMatches && !props.summonerMatches.length) {
+      matchesShown = 0;
+    } else if (props.summonerMatches && props.summonerMatches.length < 10) {
+      matchesShown = props.summonerMatches.length;
+    } else {
+      matchesShown = 10;
+    }
+
     this.setState({
       summoner: props.summoner,
       summonerLeagues: props.summonerLeagues,
       summonerMatches: props.summonerMatches,
-      isLoading: false
+      isLoading: false,
+      matchesShown: matchesShown
+    });
+  }
+
+  buildMatches() {
+    this.state.summonerMatches.slice(0, this.state.matchesShown).map(match => {
+      return <Match key={match.gameId} match={match} />;
     });
   }
 
   render() {
     console.log(`STATE: `, this.state);
     console.log(`PROPS: `, this.props);
+    console.log(`isShown: `, this.state.matchesShown);
     return (
       <div>
         {this.state.isLoading ? (
@@ -60,6 +91,12 @@ class Summoner extends Component {
               summoner={this.state.summoner}
               summonerLeagues={this.state.summonerLeagues}
             />
+            {this.state.summonerMatches > 0 &&
+            this.state.summonerMatches.length ? (
+              this.buildMatches()
+            ) : (
+              <h1>Sorry, we don't see any match data :(</h1>
+            )}
           </div>
         )}
       </div>
@@ -71,7 +108,11 @@ class Summoner extends Component {
  * CONTAINER
  */
 const mapState = state => {
-  return { summoner: state.summoner };
+  return {
+    summoner: state.summoner,
+    summonerLeagues: state.summonerLeagues,
+    summonerMatches: state.summonerMatches
+  };
 };
 
 // const mapDispatch = dispatch => {
