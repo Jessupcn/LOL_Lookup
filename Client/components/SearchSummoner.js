@@ -21,11 +21,11 @@ class SearchSummoner extends Component {
     console.log('INPUT:', this.state.input);
   }
   handleSubmit() {
-    // this.props
-    //   .loadSummoner(this.state.input)
-    //   .then(history.push(`/summoner/${this.state.input}`))
-    //   .catch();
-    history.push(`/summoner/${this.state.input}`);
+    this.props
+      .loadSummoner(this.state.input)
+      .then(history.push(`/summoner/${this.state.input}`))
+      .catch();
+
     this.setState({
       input: ''
     });

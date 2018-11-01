@@ -16,15 +16,12 @@ class Summoner extends Component {
     super(props);
     this.state = {
       isLoading: true,
-      summoner: {},
-      summonerLeagues: [],
-      summonerMatches: [],
       matchesShown: 0
     };
   }
 
   componentDidMount() {
-    this.props.loadSummoner();
+    this.props.loadSummonerData(this.props.summoner);
   }
 
   componentWillReceiveProps(props) {
@@ -41,7 +38,7 @@ class Summoner extends Component {
     }
 
     // if there is a current summoner, load the data for that summoner
-    if (props.summoner.id) {
+    if (props.summoner.id && this.state.isLoading) {
       props.loadSummonerData(props.summoner);
     }
 
@@ -60,21 +57,19 @@ class Summoner extends Component {
     }
 
     this.setState({
-      summoner: props.summoner,
-      summonerLeagues: props.summonerLeagues,
-      summonerMatches: props.summonerMatches,
       isLoading: false,
       matchesShown: matchesShown
     });
   }
 
-  buildMatches() {
-    this.state.summonerMatches.slice(0, this.state.matchesShown).map(match => {
+  buildMatches(matches) {
+    matches.slice(0, this.state.matchesShown).map(match => {
       return <Match key={match.gameId} match={match} />;
     });
   }
 
   render() {
+    const { summoner, summonerLeagues, summonerMatches } = this.props;
     console.log(`STATE: `, this.state);
     console.log(`PROPS: `, this.props);
     console.log(`isShown: `, this.state.matchesShown);
@@ -84,16 +79,10 @@ class Summoner extends Component {
           <Loader size="massive">Loading</Loader>
         ) : (
           <div>
-            <h1>{`Greetings, ${
-              this.state.summoner ? this.state.summoner.name : 'Summoner'
-            }`}</h1>
-            <Banner
-              summoner={this.state.summoner}
-              summonerLeagues={this.state.summonerLeagues}
-            />
-            {this.state.summonerMatches > 0 &&
-            this.state.summonerMatches.length ? (
-              this.buildMatches()
+            <h1>{`Greetings, ${summoner ? summoner.name : 'Summoner'}`}</h1>
+            <Banner summoner={summoner} summonerLeagues={summonerLeagues} />
+            {this.state.matchesShown > 0 && summonerMatches.length ? (
+              this.buildMatches(summonerMatches)
             ) : (
               <h1>Sorry, we don't see any match data :(</h1>
             )}
