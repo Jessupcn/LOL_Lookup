@@ -15,6 +15,7 @@ class SummonerView extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentSummoner: '',
       isLoading: true,
       matchesShown: 0
     };
@@ -22,28 +23,15 @@ class SummonerView extends Component {
 
   componentWillReceiveProps(props) {
     let matchesShown = 0;
-
     console.log('RECEIVINGGGG: ', props);
-    // load the new summoner if the component does not unmount,
-    // but a new summoner is selected
-    // if (
-    //   props.match.params.summonerName.toLowerCase() !==
-    //   props.summoner.name.toLowerCase()
-    // ) {
-    //   this.props.loadSummoner();
-    // }
 
     // if there is a current summoner, load the data for that summoner
-    if (props.summoner.id && this.state.isLoading) {
+    // if the summoner props are different from current summoner, load new data
+    if (props.summoner.name !== this.state.currentSummoner) {
       props.loadSummonerData(props.summoner);
     }
 
     // Working with how many recent matches to show
-    console.log(
-      'SUMMONER MATCHES IN RECEIVE: ',
-      props.summonerMatches,
-      props.matchesShown
-    );
     if (props.summonerMatches && !props.summonerMatches.length) {
       matchesShown = 0;
     } else if (props.summonerMatches && props.summonerMatches.length < 10) {
@@ -53,6 +41,7 @@ class SummonerView extends Component {
     }
 
     this.setState({
+      currentSummoner: props.summoner.name,
       isLoading: false,
       matchesShown: matchesShown
     });

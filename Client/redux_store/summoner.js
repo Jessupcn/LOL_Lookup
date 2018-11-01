@@ -27,7 +27,6 @@ export const fetchSummoner = summonerName => dispatch =>
     .get(`/api/summoners/${summonerName}`)
     .then(res => res.data)
     .then(summoner => {
-      console.log('SUMMONER: ', summoner);
       dispatch(getSummoner(summoner));
     })
     .catch(err => console.log(err));
