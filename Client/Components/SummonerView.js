@@ -6,7 +6,7 @@ import {
   fetchSummonerMatches
 } from '../redux_store';
 import { Banner, Match } from './SummonerComps';
-import { Loader, Segment } from 'semantic-ui-react';
+import { Loader } from 'semantic-ui-react';
 
 /*
 SUMMONER VIEW COMPONENT
@@ -52,8 +52,8 @@ class SummonerView extends Component {
       'HERES THE MATCHES TO BUILD: ',
       matches.slice(0, this.state.matchesShown)
     );
-    matches.slice(0, this.state.matchesShown).map(match => {
-      return <Match key={match.gameId} match={match} />;
+    return matches.slice(0, this.state.matchesShown).map(match => {
+      return <Match key={match.gameId} game={match} />;
     });
   }
 
