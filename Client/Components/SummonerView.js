@@ -6,12 +6,12 @@ import {
   fetchSummonerMatches
 } from '../redux_store';
 import { Banner, Match } from './SummonerComps';
-import { Loader } from 'semantic-ui-react';
+import { Loader, Segment } from 'semantic-ui-react';
 
 /*
 SUMMONER VIEW COMPONENT
 */
-class Summoner extends Component {
+class SummonerView extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,22 +20,18 @@ class Summoner extends Component {
     };
   }
 
-  componentDidMount() {
-    this.props.loadSummonerData(this.props.summoner);
-  }
-
   componentWillReceiveProps(props) {
     let matchesShown = 0;
 
     console.log('RECEIVINGGGG: ', props);
     // load the new summoner if the component does not unmount,
     // but a new summoner is selected
-    if (
-      props.match.params.summonerName.toLowerCase() !==
-      props.summoner.name.toLowerCase()
-    ) {
-      this.props.loadSummoner();
-    }
+    // if (
+    //   props.match.params.summonerName.toLowerCase() !==
+    //   props.summoner.name.toLowerCase()
+    // ) {
+    //   this.props.loadSummoner();
+    // }
 
     // if there is a current summoner, load the data for that summoner
     if (props.summoner.id && this.state.isLoading) {
@@ -63,6 +59,10 @@ class Summoner extends Component {
   }
 
   buildMatches(matches) {
+    console.log(
+      'HERES THE MATCHES TO BUILD: ',
+      matches.slice(0, this.state.matchesShown)
+    );
     matches.slice(0, this.state.matchesShown).map(match => {
       return <Match key={match.gameId} match={match} />;
     });
@@ -76,7 +76,9 @@ class Summoner extends Component {
     return (
       <div>
         {this.state.isLoading ? (
-          <Loader size="massive">Loading</Loader>
+          <Loader active size="massive" inline="centered">
+            Loading Summoner...
+          </Loader>
         ) : (
           <div>
             <h1>{`Greetings, ${summoner ? summoner.name : 'Summoner'}`}</h1>
@@ -132,4 +134,4 @@ const mapDispatch = (dispatch, ownProps) => ({
 export default connect(
   mapState,
   mapDispatch
-)(Summoner);
+)(SummonerView);
