@@ -27,22 +27,45 @@ const LeagueBadge = props => {
           soloDuo ? soloDuo.tier.toLowerCase() : 'unranked'
         }`}
       >
-        <p>Solo/Duo</p>
-        {soloDuo ? <i src={findLeagueBadgeImage(soloDuo)} /> : null}
+        <p className="leagueBadgeTitle">Solo/Duo</p>
+        {soloDuo ? (
+          <div>
+            <img
+              className="leagueBadgeImage"
+              src={findLeagueBadgeImage(soloDuo)}
+            />
+          </div>
+        ) : null}
       </div>
       <div
         className={`bannerLeagueBadge ${
           flex5s ? flex5s.tier.toLowerCase() : 'unranked'
         }`}
       >
-        <p>Flex 5v5</p>
+        <p className="leagueBadgeTitle">Flex 5v5</p>
+        {soloDuo ? (
+          <div>
+            <img
+              className="leagueBadgeImage"
+              src={findLeagueBadgeImage(flex5s)}
+            />
+          </div>
+        ) : null}
       </div>
       <div
         className={`bannerLeagueBadge ${
           flex3s ? flex3s.tier.toLowerCase() : 'unranked'
         }`}
       >
-        <p>Flex 3v3</p>
+        <p className="leagueBadgeTitle">Flex 3v3</p>
+        {soloDuo ? (
+          <div>
+            <img
+              className="leagueBadgeImage"
+              src={findLeagueBadgeImage(flex3s)}
+            />
+          </div>
+        ) : null}
       </div>
     </div>
   );
@@ -56,10 +79,11 @@ function findLeagueBadgeImage(league) {
     IV: 4,
     V: 5
   };
-  const tier = league.tier.toLowerCase();
-  const rank = league.rank ? numeralToNumber[league.rank] : null;
+  const tier = league ? league.tier.toLowerCase() : null;
+  const rank = league ? numeralToNumber[league.rank] : null;
   let leagueRank = '';
   if (tier === 'master') leagueRank = 'master';
+  if (!tier) leagueRank = 'unranked';
   else leagueRank = `${tier}_${rank}`;
 
   return `https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-league-tier-names/global/default/assets/images/ranked-crests/${leagueRank}.png`;
