@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Icon, Input, Form } from 'semantic-ui-react';
-import { fetchSummoner } from '../redux_store';
 import history from '../history';
 
 class Champions extends Component {
@@ -9,53 +8,15 @@ class Champions extends Component {
     this.state = {
       input: ''
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({
-      input: event.target.value
-    });
-    console.log('INPUT:', this.state.input);
-  }
-  handleSubmit() {
-    this.props
-      .loadSummoner(this.state.input)
-      .then(history.push(`/summoner/${this.state.input}`))
-      .catch();
-
-    this.setState({
-      input: ''
-    });
-  }
   render() {
     return (
-      <Form onSubmit={this.handleSubmit}>
-        <Input
-          icon={
-            <Icon
-              name="search"
-              inverted
-              circular
-              link
-              onClick={this.handleSubmit}
-            />
-          }
-          placeholder="Search Summoner..."
-          onChange={this.handleChange}
-          value={this.state.input}
-        />
-      </Form>
+      <div>
+        <h1>YOOOOOOO</h1>
+      </div>
     );
   }
 }
-
-const mapDispatchToProps = dispatch => ({
-  loadSummoner: summonerName => {
-    const action = fetchSummoner(summonerName);
-    return dispatch(action);
-  }
-});
 
 export default Champions;

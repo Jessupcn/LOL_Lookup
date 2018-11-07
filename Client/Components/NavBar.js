@@ -8,6 +8,9 @@ const NavBar = () => {
       <Menu.Item as="a" href="/">
         <Icon name="home" size="big" />
       </Menu.Item>
+      <Menu.Item as="a" href="/champions">
+        <h2>Champions</h2>
+      </Menu.Item>
       <Menu.Item position="right">
         <SearchSummoner />
       </Menu.Item>
