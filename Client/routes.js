@@ -6,21 +6,18 @@ import { Home, SummonerView } from './components';
 /**
  * COMPONENT
  */
-class Routes extends Component {
-  componentDidMount() {}
-
-  render() {
-    return (
-      <Switch>
-        {/* Routes placed here are available to all visitors */}
-        <Route path="/summoner/:summonerName" component={SummonerView} />
-        <Route exact path="/" component={Home} />
-        {/* Displays our Home component as a fallback */}
-        <Route component={Home} />
-      </Switch>
-    );
-  }
-}
+const Routes = () => {
+  return (
+    <Switch>
+      {/* Routes placed here are available to all visitors */}
+      <Route path="/summoner/:summonerName" component={SummonerView} />
+      <Route path="/champions" component={Champions} />
+      <Route exact path="/" component={Home} />
+      {/* Displays our Home component as a fallback */}
+      <Route component={Home} />
+    </Switch>
+  );
+};
 
 /**
  * CONTAINER
