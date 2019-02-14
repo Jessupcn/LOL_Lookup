@@ -5,8 +5,10 @@ import LeagueBadge from './LeagueBadge';
 
 const Banner = props => {
   console.log('BANNER PROPS: ', props);
-  let summoner = props.summoner;
-  let summonerLeagues = props.summonerLeagues;
+  // let summoner = props.summoner;
+  // let summonerLeagues = props.summonerLeagues;
+
+  let { summoner, summonerLeagues } = props;
   return (
     <Container>
       <div className="banner shadow">
@@ -15,8 +17,8 @@ const Banner = props => {
             <img
               className="bannerProfIcon"
               src={`http://ddragon.leagueoflegends.com/cdn/8.20.1/img/profileicon/${
-                props.summoner.profileIconId
-              }.png`}
+                summoner.profileIconId
+                }.png`}
             />
           </div>
         ) : null}

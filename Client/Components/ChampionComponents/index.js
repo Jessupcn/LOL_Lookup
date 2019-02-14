@@ -1,1 +1,1 @@
-export { default as singleChampion } from './singleChampion';
+export { default as SingleChampion } from './SingleChampion';

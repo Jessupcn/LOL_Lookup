@@ -1,14 +1,16 @@
 import React from 'react';
 import { Container } from 'semantic-ui-react';
-import LeagueBadge from './LeagueBadge';
 
-const singleChampion = props => {
-  console.log('Champion PROPS: ', props);
+const SingleChampion = props => {
+  const { champion } = props
+  const imgUrl = `http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${champion.id}_0.jpg`;
+  console.log(champion)
+
   return (
-    <div>
-      <img src={props.champion.image.full} />
+    <div className="championImgContainer">
+      <img src={imgUrl} />
     </div>
   );
 };
 
-export default singleChampion;
+export default SingleChampion;

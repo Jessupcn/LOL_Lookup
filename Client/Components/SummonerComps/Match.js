@@ -12,9 +12,7 @@ class Match extends Component {
     };
   }
 
-  componentDidMount() {
-    // fetch(`${domain}/match/v3/matches/{matchId}?api_key=${key}`);
-  }
+  componentDidMount() {}
 
   render() {
     const { game } = this.props;

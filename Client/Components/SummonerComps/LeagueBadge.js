@@ -20,12 +20,13 @@ const LeagueBadge = props => {
   if (soloDuo) {
     console.log('GOT HEREEEE: ', findLeagueBadgeImage(soloDuo));
   }
+
   return (
     <div className="bannerLeagueContainer">
       <div
         className={`bannerLeagueBadge ${
           soloDuo ? soloDuo.tier.toLowerCase() : 'unranked'
-        }`}
+          }`}
       >
         <p className="leagueBadgeTitle">Solo/Duo</p>
         {soloDuo ? (
@@ -40,7 +41,7 @@ const LeagueBadge = props => {
       <div
         className={`bannerLeagueBadge ${
           flex5s ? flex5s.tier.toLowerCase() : 'unranked'
-        }`}
+          }`}
       >
         <p className="leagueBadgeTitle">Flex 5v5</p>
         {soloDuo ? (
@@ -55,7 +56,7 @@ const LeagueBadge = props => {
       <div
         className={`bannerLeagueBadge ${
           flex3s ? flex3s.tier.toLowerCase() : 'unranked'
-        }`}
+          }`}
       >
         <p className="leagueBadgeTitle">Flex 3v3</p>
         {soloDuo ? (

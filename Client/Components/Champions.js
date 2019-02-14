@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Icon, Input, Form } from 'semantic-ui-react';
 import history from '../history';
+import { SingleChampion } from './ChampionComponents';
 
 class Champions extends Component {
   constructor(props) {
@@ -23,8 +24,16 @@ class Champions extends Component {
   render() {
     console.log('STATE: ', this.state);
     return (
-      <div>
-        <h1>YOOOOOOO</h1>
+      <div className="championsContainer">
+        {
+          Object.keys(this.state.championsData).length
+            ? Object.keys(this.state.championsData).map((championName) => {
+              let champion = this.state.championsData[championName];
+              console.log('CHAMPIONNNNN: ', championName)
+              return <SingleChampion key={championName} champion={champion} />
+            })
+            : null
+        }
       </div>
     );
   }

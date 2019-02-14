@@ -24,6 +24,7 @@ class SummonerView extends Component {
   componentWillReceiveProps(props) {
     let matchesShown = 0;
     console.log('RECEIVINGGGG: ', props);
+    let { summonerMatches } = props
 
     // if there is a current summoner, load the data for that summoner
     // if the summoner props are different from current summoner, load new data
@@ -48,10 +49,6 @@ class SummonerView extends Component {
   }
 
   buildMatches(matches) {
-    console.log(
-      'HERES THE MATCHES TO BUILD: ',
-      matches.slice(0, this.state.matchesShown)
-    );
     return matches.slice(0, this.state.matchesShown).map(match => {
       return <Match key={match.gameId} game={match} />;
     });
@@ -69,16 +66,15 @@ class SummonerView extends Component {
             Loading Summoner...
           </Loader>
         ) : (
-          <div>
-            <h1>{`Greetings, ${summoner ? summoner.name : 'Summoner'}`}</h1>
-            <Banner summoner={summoner} summonerLeagues={summonerLeagues} />
-            {this.state.matchesShown > 0 && summonerMatches.length ? (
-              this.buildMatches(summonerMatches)
-            ) : (
-              <h1>Sorry, we don't see any match data :(</h1>
-            )}
-          </div>
-        )}
+            <div>
+              <Banner summoner={summoner} summonerLeagues={summonerLeagues} />
+              {this.state.matchesShown > 0 && summonerMatches.length ? (
+                this.buildMatches(summonerMatches)
+              ) : (
+                  <h1>Sorry, we don't see any match data :(</h1>
+                )}
+            </div>
+          )}
       </div>
     );
   }
