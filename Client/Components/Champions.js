@@ -24,16 +24,18 @@ class Champions extends Component {
   render() {
     console.log('STATE: ', this.state);
     return (
-      <div className="championsContainer">
-        {
-          Object.keys(this.state.championsData).length
-            ? Object.keys(this.state.championsData).map((championName) => {
-              let champion = this.state.championsData[championName];
-              console.log('CHAMPIONNNNN: ', championName)
-              return <SingleChampion key={championName} champion={champion} />
-            })
-            : null
-        }
+      <div className="championsPage">
+        <div className="championsContainer">
+          {
+            Object.keys(this.state.championsData).length
+              ? Object.keys(this.state.championsData).map((championName) => {
+                let champion = this.state.championsData[championName];
+                console.log('CHAMPIONNNNN: ', championName)
+                return <SingleChampion key={championName} champion={champion} />
+              })
+              : null
+          }
+        </div>
       </div>
     );
   }

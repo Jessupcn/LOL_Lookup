@@ -1,3 +1,7 @@
+.ui.huge.menu {
+  margin-bottom: 0;
+}
+
 .banner {
   width: 750px;
   height: 88px;
@@ -101,14 +105,24 @@
 *  CHAMPION PAGE CSS
 */
 
+.championsPage {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+
 .championsContainer {
+  min-width: 1320px;
   display: flex;
   flex-wrap: wrap;
+  margin: auto;
 }
 
 .championImgContainer {
-  width: 165px;
-  height: 300px;
+  width: 0.16666667%;
+  height: auto;
+  min-width: 220px;
+  min-height: 400px;
 }
 
 .championImgContainer img {
