@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import summoner from '../../redux_store/summoner';
 
 const LeagueBadge = props => {
-  console.log('LEAGUE BADGE PROPS!!! ', props);
   let { summonerLeagues } = props;
   let soloDuo,
     flex5s,
@@ -15,10 +14,6 @@ const LeagueBadge = props => {
       if (league.queueType === 'RANKED_FLEX_SR') flex5s = league;
       if (league.queueType === 'RANKED_SOLO_TT') flex3s = league;
     });
-  }
-
-  if (soloDuo) {
-    console.log('GOT HEREEEE: ', findLeagueBadgeImage(soloDuo));
   }
 
   return (

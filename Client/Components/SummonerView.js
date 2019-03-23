@@ -23,7 +23,6 @@ class SummonerView extends Component {
 
   componentWillReceiveProps(props) {
     let matchesShown = 0;
-    console.log('RECEIVINGGGG: ', props);
     let { summonerMatches } = props
 
     // if there is a current summoner, load the data for that summoner
@@ -56,9 +55,9 @@ class SummonerView extends Component {
 
   render() {
     const { summoner, summonerLeagues, summonerMatches } = this.props;
-    console.log(`STATE: `, this.state);
-    console.log(`PROPS: `, this.props);
-    console.log(`isShown: `, this.state.matchesShown);
+    // console.log(`STATE: `, this.state);
+    // console.log(`PROPS: `, this.props);
+    // console.log(`isShown: `, this.state.matchesShown);
     return (
       <div>
         {this.state.isLoading ? (

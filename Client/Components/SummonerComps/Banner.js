@@ -4,7 +4,7 @@ import { Container } from 'semantic-ui-react';
 import LeagueBadge from './LeagueBadge';
 
 const Banner = props => {
-  console.log('BANNER PROPS: ', props);
+  // console.log('BANNER PROPS: ', props);
   // let summoner = props.summoner;
   // let summonerLeagues = props.summonerLeagues;
 

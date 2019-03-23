@@ -18,7 +18,6 @@ class SearchSummoner extends Component {
     this.setState({
       input: event.target.value
     });
-    console.log('INPUT:', this.state.input);
   }
   handleSubmit() {
     this.props
