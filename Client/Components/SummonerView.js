@@ -61,7 +61,7 @@ class SummonerView extends Component {
     return (
       <div>
         {this.state.isLoading ? (
-          <Loader active size="massive" inline="centered">
+          <Loader active size="massive" inline="centered" style={{ 'margin-top': '4rem' }} >
             Loading Summoner...
           </Loader>
         ) : (
